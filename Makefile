@@ -9,3 +9,5 @@ run:
 
 start:
 	npm run prepublishOnly
+lint:
+	npx eslint
