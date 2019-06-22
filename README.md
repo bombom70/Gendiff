@@ -6,7 +6,6 @@
 
 [![Build Status](https://travis-ci.com/bombom70/project-lvl2-s487.svg?branch=master)](https://travis-ci.com/bombom70/project-lvl2-s487)
 
-[![Build Status](https://travis-ci.com/bombom70/project-lvl2-s487.svg?branch=master)](https://travis-ci.com/bombom70/project-lvl2-s487)
 npm i my-calculated-differences
 
 [![asciicast](https://asciinema.org/a/OhILJ2PX2O7NbKp6Yf0HizFFi.svg)](https://asciinema.org/a/OhILJ2PX2O7NbKp6Yf0HizFFi)
