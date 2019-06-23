@@ -9,3 +9,7 @@
 npm i my-calculated-differences
 
 [![asciicast](https://asciinema.org/a/OhILJ2PX2O7NbKp6Yf0HizFFi.svg)](https://asciinema.org/a/OhILJ2PX2O7NbKp6Yf0HizFFi)
+
+
+**run**
+[![asciicast](https://asciinema.org/a/KEZggSvoMFTPr9Mo2YFiQxmRB.svg)](https://asciinema.org/a/KEZggSvoMFTPr9Mo2YFiQxmRB)
