@@ -6,7 +6,7 @@
 
 [![Build Status](https://travis-ci.com/bombom70/project-lvl2-s487.svg?branch=master)](https://travis-ci.com/bombom70/project-lvl2-s487)
 
-npm i my-calculated-differences
+***npm i my-calculated-differences***
 
 [![asciicast](https://asciinema.org/a/OhILJ2PX2O7NbKp6Yf0HizFFi.svg)](https://asciinema.org/a/OhILJ2PX2O7NbKp6Yf0HizFFi)
 
@@ -14,3 +14,8 @@ npm i my-calculated-differences
 **run**
 
 [![asciicast](https://asciinema.org/a/KEZggSvoMFTPr9Mo2YFiQxmRB.svg)](https://asciinema.org/a/KEZggSvoMFTPr9Mo2YFiQxmRB)
+
+
+***diff yaml***
+
+[![asciicast](https://asciinema.org/a/86BOJLG4NnwlCdVKKLBdCgaoa.svg)](https://asciinema.org/a/86BOJLG4NnwlCdVKKLBdCgaoa)

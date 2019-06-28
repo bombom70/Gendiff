@@ -12,15 +12,9 @@ const searchDifferenceArr = (arr1, arr2) => {
 export default (pathToFile1, pathToFile2) => {
     const before = parsers(path.extname(pathToFile1), pathToFile1);
     const after = parsers(path.extname(pathToFile2), pathToFile2);
-
-    console.log(before);
-    console.log(after);
-  
     const keysBefore = Object.keys(before);
     const keysAfter = Object.keys(after);
 
-    console.log(keysBefore);
-    console.log(keysAfter);
     const differenceArr = searchDifferenceArr(keysAfter, keysBefore);
 
     const result = keysBefore.reduce((acc, val) => {
