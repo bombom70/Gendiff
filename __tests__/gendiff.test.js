@@ -4,6 +4,7 @@ import path from 'path';
 import { getDate } from '../src/index';
 
 test('diff', () => {
+
   const f1 = path.resolve(__dirname, '__fixtures__/before.json');
   const f2 = path.resolve(__dirname, '__fixtures__/after.json');
 

@@ -1,9 +1,7 @@
 // import genDiff from './bin/gendiff';
 import _ from 'lodash';
-import fs, { access } from 'fs';
 import path from 'path';
-
-// export const getDate = (pathToFile) => path.isAbsolute(pathToFile) ? pathToFile : path.resolve(__dirname, pathToFile);
+import parsers from './parsers';
 
 const searchDifferenceArr = (arr1, arr2) => {
     const diff = arr1.filter(e => !arr2.includes(e));
@@ -12,11 +10,17 @@ const searchDifferenceArr = (arr1, arr2) => {
 };
 
 export default (pathToFile1, pathToFile2) => {
-    const before = JSON.parse(fs.readFileSync(pathToFile1));
-    const after = JSON.parse(fs.readFileSync(pathToFile2)); 
+    const before = parsers(path.extname(pathToFile1), pathToFile1);
+    const after = parsers(path.extname(pathToFile2), pathToFile2);
+
+    console.log(before);
+    console.log(after);
   
     const keysBefore = Object.keys(before);
     const keysAfter = Object.keys(after);
+
+    console.log(keysBefore);
+    console.log(keysAfter);
     const differenceArr = searchDifferenceArr(keysAfter, keysBefore);
 
     const result = keysBefore.reduce((acc, val) => {
