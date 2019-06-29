@@ -19,3 +19,7 @@
 ***diff yaml***
 
 [![asciicast](https://asciinema.org/a/86BOJLG4NnwlCdVKKLBdCgaoa.svg)](https://asciinema.org/a/86BOJLG4NnwlCdVKKLBdCgaoa)
+
+***diff ini***
+
+[![asciicast](https://asciinema.org/a/YGqWzJv86g0ICs5vNCUNqrrO5.svg)](https://asciinema.org/a/YGqWzJv86g0ICs5vNCUNqrrO5)
