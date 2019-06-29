@@ -1,6 +1,6 @@
 {
   "name": "my-calculated-differences",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "to calculate differences",
   "main": "dist/index.js",
   "scripts": {
@@ -27,6 +27,7 @@
   "dependencies": {
     "commander": "^2.20.0",
     "file-system": "^2.2.2",
+    "ini": "^1.3.5",
     "lodash": "^4.17.11",
     "lodash.has": "^4.5.2"
   },
