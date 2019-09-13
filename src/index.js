@@ -1,31 +1,49 @@
-// import genDiff from './bin/gendiff';
-import _ from 'lodash';
-import path from 'path';
-import parsers from './parsers';
+import _ from 'lodash/fp';
 
-const searchDifferenceArr = (arr1, arr2) => {
-    const diff = arr1.filter(e => !arr2.includes(e));
+const genDiff = (before, after) => {
+  console.log(before);
+  console.log(after);
+  // const before = parsers(path.extname(pathToFile1), pathToFile1);
+  // const after = parsers(path.extname(pathToFile2), pathToFile2);
+  const keysBefore = Object.keys(before);
+  const keysAfter = Object.keys(after);
 
-    return diff[0];
+  const keysSet = _.union(keysBefore, keysAfter);
+
+  const result = keysSet.map(key => {
+    if (_.has(keysBefore, key) && _.has(keysAfter, key) && (keysBefore === keysAfter)) {
+      return `${keysAfter}`;
+    }
+    
+  });
+
+  return result.join('');
 };
 
-export default (pathToFile1, pathToFile2) => {
-    const before = parsers(path.extname(pathToFile1), pathToFile1);
-    const after = parsers(path.extname(pathToFile2), pathToFile2);    
-    const keysBefore = Object.keys(before);
-    const keysAfter = Object.keys(after);
-    const differenceArr = searchDifferenceArr(keysAfter, keysBefore);
+// const buildAst = (before, after) => {
+//   // const before = parsers(path.extname(pathToFile1), pathToFile1);
+//   // const after = parsers(path.extname(pathToFile2), pathToFile2);
+//   const keysBefore = Object.keys(before);
+//   const keysAfter = Object.keys(after);
 
-    const result = keysBefore.reduce((acc, val) => {
-        if (before[val] === after[val]) {
-            acc += `\t  ${val}: ${after[val]}\n`;
-        } else if (_.has(after, val)) {
-            acc += `\t+ ${val}: ${after[val]}\n\t- ${val}: ${before[val]}\n`;
-        } else {
-            acc += `\t- ${val}: ${before[val]}\n`;
-        }
-        return acc ;
-    }, '{\n');
+//   const keysSet = _.union(keysBefore, keysAfter);
 
-    return result + `\t+ ${differenceArr}: ${after[differenceArr]}\n}`;
-};
+//   const result = keysSet.reduce((acc, val) => {
+//     if (_.has(before, val) && (_.has(after, val))) {
+//       if (before[val] instanceof Object && after[val] instanceof Object) {
+//         return [...acc, { [val]: buildAst(before[val], after[val]) }];
+//       }
+//       if (before[val] !== after[val]) {
+//         return [...acc, { [`+`]: `${val}: ${stringify(after[val])}` }, { [`-`]: `${val}: ${stringify(before[val])}` }];
+//       }
+//       return [...acc, { [` `]: `${val}: ${stringify(after[val])}` }];
+//     }
+//     if (!_.has(before, val)) {
+//       return [...acc, { [`+`]: `${val}: ${stringify(after[val])}` }];
+//     }
+//     return [...acc, { [`-`]: `${val}: ${stringify(before[val])}` }];
+//   }, []);
+//   return result;
+// };
+
+export default genDiff;
