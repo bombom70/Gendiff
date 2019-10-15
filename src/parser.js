@@ -1,6 +1,11 @@
-import parsers from './parsers';
-import path from 'path';
+import yaml from 'js-yaml';
+import fs from 'fs';
+import ini from 'ini';
 
-export default (pathToFile) => {
-    return parsers(path.extname(pathToFile), pathToFile);
+const mapping = {
+  '.json': f => JSON.parse(fs.readFileSync(f)),
+  '.yaml': f => yaml.safeLoad(fs.readFileSync(f)),
+  '.ini': f => ini.parse(`${fs.readFileSync(f)}`),
 };
+
+export default (format, pathToFile) => mapping[format](pathToFile);
