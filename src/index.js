@@ -9,9 +9,7 @@ const searchDifferenceArr = (arr1, arr2) => {
     return diff[0];
 };
 
-export default (pathToFile1, pathToFile2) => {
-    const before = parsers(path.extname(pathToFile1), pathToFile1);
-    const after = parsers(path.extname(pathToFile2), pathToFile2);    
+export default (before, after) => { 
     const keysBefore = Object.keys(before);
     const keysAfter = Object.keys(after);
     const differenceArr = searchDifferenceArr(keysAfter, keysBefore);
@@ -24,8 +22,7 @@ export default (pathToFile1, pathToFile2) => {
         } else {
             acc += `\t- ${val}: ${before[val]}\n`;
         }
-        return acc ;
+        return acc;
     }, '{\n');
-
     return result + `\t+ ${differenceArr}: ${after[differenceArr]}\n}`;
 };

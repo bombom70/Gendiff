@@ -3,15 +3,11 @@ import path from 'path';
 import diff from '../src';
 
 test('diff JSON file', () => {
-  const f1 = fs.readFileSync(path.resolve(__dirname, '__fixtures__/before.json'));
-  const f2 = fs.readFileSync(path.resolve(__dirname, '__fixtures__/after.json'));
+  const f1 = fs.readFileSync(`${__dirname}/__fixtures__/before.json`, 'utf-8');
+  const f2 = fs.readFileSync(`${__dirname}/__fixtures__/after.json`, 'utf-8');
   const result = fs.readFileSync(`${__dirname}/__fixtures__/resultJSON.txt`, 'utf-8');
-  const expected = diff(f1, f2);
-  console.log(fs.readFileSync(f1, 'utf-8'));
-  console.log(f2);
-  console.log(typeof result === 'string');
-  console.log(typeof expected === 'string');
-
+  console.log(JSON.stringify(f1) instanceof Object);
+  const expected = diff(JSON.stringify(f1), JSON.stringify(f2));
   expect(diff(f1, f2)).toBe(result);
 });
 
