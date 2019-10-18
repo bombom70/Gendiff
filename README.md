@@ -23,3 +23,8 @@
 ***diff ini***
 
 [![asciicast](https://asciinema.org/a/YGqWzJv86g0ICs5vNCUNqrrO5.svg)](https://asciinema.org/a/YGqWzJv86g0ICs5vNCUNqrrO5)
+
+***diff-tree***
+
+[![asciicast](https://asciinema.org/a/fpBWpMoXNF3LhS4CRD1TfMxAi.svg)](https://asciinema.org/a/fpBWpMoXNF3LhS4CRD1TfMxAi)
+
