@@ -1,5 +1,7 @@
 import _ from 'lodash/fp';
+import path from 'path';
 import stringify from './stringify';
+import parse from './parser';
 
 const repeat = num => ' '.repeat(num);
 const space = (num) => {
@@ -9,12 +11,10 @@ const space = (num) => {
   if (num === 1) {
     return repeat(4);
   }
-  if (num === 0) {
-    return repeat(0);
-  }
+  return repeat(0);
 };
 
-export const render = (before, after) => {
+const render = (before, after) => {
   const beforeKeys = Object.keys(before);
   const afterKeys = Object.keys(after);
   const keys = _.union(beforeKeys, afterKeys);
@@ -64,19 +64,18 @@ export const render = (before, after) => {
   return result;
 };
 
-export const parse = (ast, depth = 0) => {
+const myParse = (ast, depth = 0) => {
   const result = ast.map((data) => {
     if (data.children.length > 0) {
       if (depth > 0) {
-        return `${repeat(8)}${data.name}: ${parse(data.children, depth + 1)}\n`;
+        return `${repeat(8)}${data.name}: ${myParse(data.children, depth + 1)}\n`;
       }
-      return `${repeat(4)}${data.name}: ${parse(data.children, depth + 1)}\n`;
+      return `${repeat(4)}${data.name}: ${myParse(data.children, depth + 1)}\n`;
     }
     if (depth === 2) {
       return `${repeat(10)}${data.name}: ${data.value}\n`;
     }
     if (data.type === 'changed') {
-      console.log(depth);
       return `${repeat(6)}${data.valueBefore}\n${repeat(6)}${data.valueAfter}\n`;
     }
     if (depth > 0) {
@@ -90,7 +89,9 @@ export const parse = (ast, depth = 0) => {
   return `{\n${result.join('')}${space(depth)}}`;
 };
 
-export default (obj1, obj2) => {
-  const ast = render(obj1, obj2);
-  return parse(ast);
+export default (pathToFile1, pathToFile2) => {
+  const before = parse(path.extname(`${__dirname}${pathToFile1}`), pathToFile1);
+  const after = parse(path.extname(`${__dirname}${pathToFile2}`), pathToFile2);
+  const ast = render(before, after);
+  return myParse(ast);
 };
