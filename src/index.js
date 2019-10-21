@@ -6,7 +6,7 @@ import plainFormat from './formatters/plainFormat';
 import jsonFormat from './formatters/jsonFormat';
 
 const repeat = num => ' '.repeat(num);
-const space = (num) => {
+const createSpace = (num) => {
   if (num === 2) {
     return repeat(8);
   }
@@ -27,49 +27,47 @@ const selectSign = (type) => {
   return signs[type];
 };
 
-const render = (before, after) => {
-  const beforeKeys = Object.keys(before);
-  const afterKeys = Object.keys(after);
-  const keys = _.union(beforeKeys, afterKeys);
-  keys.sort();
+const render = (valueBefore, valueAfter) => {
+  const valueKeys = _.union(Object.keys(valueBefore), Object.keys(valueAfter));
+  valueKeys.sort();
 
-  const result = keys.map((key) => {
-    if (before[key] instanceof Object && after[key] instanceof Object) {
+  const result = valueKeys.map((key) => {
+    if (_.isObject(valueBefore[key]) && _.isObject(valueAfter[key])) {
       return {
         name: key,
         value: '',
         type: 'changeInside',
-        children: render(before[key], after[key]),
+        children: render(valueBefore[key], valueAfter[key]),
       };
     }
-    if (!_.has(key, before)) {
+    if (!_.has(key, valueBefore)) {
       return {
         name: key,
-        value: after[key],
+        value: valueAfter[key],
         type: 'add',
         children: [],
       };
     }
-    if (!_.has(key, after)) {
+    if (!_.has(key, valueAfter)) {
       return {
         name: key,
-        value: before[key],
+        value: valueBefore[key],
         type: 'deleted',
         children: [],
       };
     }
-    if (before[key] === after[key]) {
+    if (valueBefore[key] === valueAfter[key]) {
       return {
         name: key,
-        value: after[key],
+        value: valueAfter[key],
         type: 'unchanged',
         children: [],
       };
     }
     return {
       name: key,
-      valueBefore: before[key],
-      valueAfter: after[key],
+      valueBefore: valueBefore[key],
+      valueAfter: valueAfter[key],
       type: 'changed',
       children: [],
     };
@@ -99,7 +97,7 @@ const myParse = (ast, depth = 0) => {
     }
     return `${repeat(10)}${selectSign(data.type)} ${data.name}: ${stringify(data.value, depth)}\n`;
   });
-  return `{\n${result.join('')}${space(depth)}}`;
+  return `{\n${result.join('')}${createSpace(depth)}}`;
 };
 
 export default (pathToFile1, pathToFile2, format) => {
