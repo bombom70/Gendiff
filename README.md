@@ -28,3 +28,8 @@
 
 [![asciicast](https://asciinema.org/a/fpBWpMoXNF3LhS4CRD1TfMxAi.svg)](https://asciinema.org/a/fpBWpMoXNF3LhS4CRD1TfMxAi)
 
+***diff plain format***
+[![asciicast](https://asciinema.org/a/fGrHUQfcaGOtar5T3PvyeFyEp.svg)](https://asciinema.org/a/fGrHUQfcaGOtar5T3PvyeFyEp)
+
+***diff json format***
+[![asciicast](https://asciinema.org/a/MfBcaEfpo5YEFfQBviXyJ406W.svg)](https://asciinema.org/a/MfBcaEfpo5YEFfQBviXyJ406W)
