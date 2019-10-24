@@ -11,7 +11,7 @@ start:
 	npm run prepublishOnly
 
 lint:
-	npx eslint
+	npx eslint .
 
 test:
 	npm run test
