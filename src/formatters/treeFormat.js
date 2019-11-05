@@ -1,4 +1,3 @@
-import _ from 'lodash/fp';
 import stringify from './stringify';
 
 const repeat = num => ' '.repeat(num);
