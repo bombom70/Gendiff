@@ -18,7 +18,5 @@ test.each`
   const valueAfter = path.resolve(__dirname, `__fixtures__/after.${extName}`);
   const expectedValue = fs.readFileSync(`${__dirname}/__fixtures__/${file}`, 'utf-8');
   const result = genDiff(valueBefore, valueAfter, format);
-  console.log(result);
-
   expect(result).toBe(expectedValue);
 });
