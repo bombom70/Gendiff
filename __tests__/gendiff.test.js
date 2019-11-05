@@ -2,44 +2,23 @@ import fs from 'fs';
 import path from 'path';
 import genDiff from '../src';
 
-test('diff JSON tree', () => {
-  const valueBefore = path.resolve(__dirname, '__fixtures__/before.json');
-  const valueAfter = path.resolve(__dirname, '__fixtures__/after.json');
-  const expected = fs.readFileSync(`${__dirname}/__fixtures__/resultTree.txt`, 'utf-8');
-  const result = genDiff(valueBefore, valueAfter);
-  expect(result).toBe(expected);
-});
-
-test('diff yaml tree', () => {
-  const valueBefore = path.resolve(__dirname, '__fixtures__/before.yaml');
-  const valueAfter = path.resolve(__dirname, '__fixtures__/after.yaml');
-  const expected = fs.readFileSync(`${__dirname}/__fixtures__/resultTree.txt`, 'utf-8');
-  const result = genDiff(valueBefore, valueAfter);
-  expect(result).toBe(expected);
-});
-
-test('diff ini tree', () => {
-  const valueBefore = path.resolve(__dirname, '__fixtures__/before.ini');
-  const valueAfter = path.resolve(__dirname, '__fixtures__/after.ini');
-  const expected = fs.readFileSync(`${__dirname}/__fixtures__/resultTree.txt`, 'utf-8');
-  const result = genDiff(valueBefore, valueAfter);
-  expect(result).toBe(expected);
-});
-
-test('diff plain format', () => {
-  const valueBefore = path.resolve(__dirname, '__fixtures__/before.json');
-  const valueAfter = path.resolve(__dirname, '__fixtures__/after.json');
-  const expected = fs.readFileSync(`${__dirname}/__fixtures__/plainFormatResult.txt`, 'utf-8');
-  const format = 'plain';
+test.each`
+  extName      | format            | file
+  ${'json'}    | ${'plain'}'       | ${'plainFormatResult.txt'}
+  ${'json'}    | ${'json'}'        | ${'resultJSON.txt'}
+  ${'json'}    | ${'jsonTree'}'    | ${'resultTree.txt'}
+  ${'yaml'}    | ${'plain'}'       | ${'plainFormatResult.txt'}
+  ${'yaml'}    | ${'json'}'        | ${'resultJSON.txt'}
+  ${'yaml'}    | ${'jsonTree'}'    | ${'resultTree.txt'}
+  ${'ini'}     | ${'plain'}'       | ${'plainFormatResult.txt'}
+  ${'ini'}     | ${'json'}'        | ${'resultJSON.txt'}
+  ${'ini'}     | ${'jsonTree'}'    | ${'resultTree.txt'}
+`('test $extName with format $format', ({ extName, format, file }) => {
+  const valueBefore = path.resolve(__dirname, `__fixtures__/before.${extName}`);
+  const valueAfter = path.resolve(__dirname, `__fixtures__/after.${extName}`);
+  const expectedValue = fs.readFileSync(`${__dirname}/__fixtures__/${file}`, 'utf-8');
   const result = genDiff(valueBefore, valueAfter, format);
-  expect(result).toBe(expected);
-});
+  console.log(result);
 
-test('diff JSON', () => {
-  const valueBefore = path.resolve(__dirname, '__fixtures__/before.json');
-  const valueAfter = path.resolve(__dirname, '__fixtures__/after.json');
-  const expected = fs.readFileSync(`${__dirname}/__fixtures__/resultJSON.txt`, 'utf-8');
-  const format = 'json';
-  const result = genDiff(valueBefore, valueAfter, format);
-  expect(result).toBe(expected);
+  expect(result).toBe(expectedValue);
 });

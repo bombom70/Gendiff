@@ -13,7 +13,7 @@ const createSpace = (num) => {
 };
 const selectSign = (type) => {
   const signs = {
-    add: '+',
+    added: '+',
     deleted: '-',
     changeInside: ' ',
     unchanged: ' ',
@@ -24,7 +24,7 @@ const selectSign = (type) => {
 
 const treeParse = (ast, depth = 0) => {
   const result = ast.map((data) => {
-    if (_.has('children', data)) {
+    if (data.type === 'changeInside') {
       if (depth > 0) {
         return `${repeat(8)}${data.name}: ${treeParse(data.children, depth + 1)}\n`;
       }

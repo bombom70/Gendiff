@@ -9,7 +9,7 @@ const plainFormat = (ast, acc = '') => {
     if (_.isObject(data.value) || _.isObject(data.valueBefore) || _.isObject(data.valueAfter)) {
       return `Property '${acc}${data.name}' was removed\n`;
     }
-    if (data.type === 'add') {
+    if (data.type === 'added') {
       return `Property '${acc}${data.name}' was added with value: ${getValue}\n`;
     }
     if (data.type === 'changed') {

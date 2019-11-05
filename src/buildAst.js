@@ -16,7 +16,7 @@ const render = (valueBefore, valueAfter) => {
       return {
         name: key,
         value: valueAfter[key],
-        type: 'add',
+        type: 'added',
       };
     }
     if (!_.has(key, valueAfter)) {

@@ -1,1 +1,1 @@
-export default ast => JSON.stringify(ast).replace(/"/g, '');
+export default ast => JSON.stringify(ast);

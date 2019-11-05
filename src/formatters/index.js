@@ -3,11 +3,12 @@ import jsonFormat from './jsonFormat';
 import treeParse from './treeFormat';
 
 export default (ast, format) => {
-  if (format === 'plain') {
-    return plainFormat(ast);
+  switch (format) {
+    case 'plain':
+      return plainFormat(ast);
+    case 'json':
+      return jsonFormat(ast);
+    default:
+      return treeParse(ast);
   }
-  if (format === 'json') {
-    return jsonFormat(ast);
-  }
-  return treeParse(ast);
 };
