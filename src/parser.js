@@ -2,11 +2,11 @@ import fs from 'fs';
 import ini from 'ini';
 import yaml from 'js-yaml';
 
-const convertFileToObject = file => fs.readFileSync(file, 'utf-8');
+const reeadFile = file => fs.readFileSync(file, 'utf-8');
 const mapping = {
-  '.json': f => JSON.parse(convertFileToObject(f)),
-  '.yaml': f => yaml.safeLoad(convertFileToObject(f)),
-  '.ini': f => ini.parse(convertFileToObject(f)),
+  '.json': f => JSON.parse(reeadFile(f)),
+  '.yaml': f => yaml.safeLoad(reeadFile(f)),
+  '.ini': f => ini.parse(reeadFile(f)),
 };
 
 export default (format, pathToFile) => mapping[format](pathToFile);
