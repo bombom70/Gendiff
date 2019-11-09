@@ -6,13 +6,13 @@ test.each`
   extName      | format            | file
   ${'json'}    | ${'plain'}'       | ${'plainFormatResult.txt'}
   ${'json'}    | ${'json'}'        | ${'resultJSON.txt'}
-  ${'json'}    | ${'jsonTree'}'    | ${'resultTree.txt'}
+  ${'json'}    | ${'tree'}'    | ${'resultTree.txt'}
   ${'yaml'}    | ${'plain'}'       | ${'plainFormatResult.txt'}
   ${'yaml'}    | ${'json'}'        | ${'resultJSON.txt'}
-  ${'yaml'}    | ${'jsonTree'}'    | ${'resultTree.txt'}
+  ${'yaml'}    | ${'tree'}'    | ${'resultTree.txt'}
   ${'ini'}     | ${'plain'}'       | ${'plainFormatResult.txt'}
   ${'ini'}     | ${'json'}'        | ${'resultJSON.txt'}
-  ${'ini'}     | ${'jsonTree'}'    | ${'resultTree.txt'}
+  ${'ini'}     | ${'tree'}'    | ${'resultTree.txt'}
 `('test $extName with format $format', ({ extName, format, file }) => {
   const valueBefore = path.resolve(__dirname, `__fixtures__/before.${extName}`);
   const valueAfter = path.resolve(__dirname, `__fixtures__/after.${extName}`);
