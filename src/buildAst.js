@@ -7,7 +7,6 @@ const render = (valueBefore, valueAfter) => {
     if (_.isObject(valueBefore[key]) && _.isObject(valueAfter[key])) {
       return {
         name: key,
-        value: '',
         type: 'changeInside',
         children: render(valueBefore[key], valueAfter[key]),
       };
