@@ -1,14 +1,27 @@
 import stringify from './stringify';
 
 const repeat = num => ' '.repeat(num);
-const createSpace = (num) => {
-  if (num === 2) {
-    return repeat(8);
+const createSpaceEnd = (num) => {
+  switch (num) {
+    case 2:
+      return repeat(8);
+    case 1:
+      return repeat(4);
+    default:
+      return repeat(0);
   }
-  if (num === 1) {
-    return repeat(4);
+};
+const createSpace = (depth) => {
+  switch (depth) {
+    case 0:
+      return repeat(2);
+    case 1:
+      return repeat(6);
+    case 2:
+      return repeat(10);
+    default:
+      return repeat(10);
   }
-  return repeat(0);
 };
 const selectSign = (type) => {
   const signs = {
@@ -22,28 +35,21 @@ const selectSign = (type) => {
 };
 
 const treeRender = (ast, depth = 0) => {
-  const result = ast.map((data) => {
-    if (data.type === 'changeInside') {
-      if (depth > 0) {
-        return `${repeat(8)}${data.name}: ${treeRender(data.children, depth + 1)}`;
-      }
-      return `${repeat(4)}${data.name}: ${treeRender(data.children, depth + 1)}`;
+  const result = ast.map((node) => {
+    switch (node.type) {
+      case 'changeInside':
+        return `${createSpace(depth)}${selectSign(node.type)} ${node.name}: ${treeRender(node.children, depth + 1)}`;
+      case 'added':
+        return `${createSpace(depth)}${selectSign(node.type)} ${node.name}: ${stringify(node.value, depth)}`;
+      case 'changed':
+        return `${createSpace(depth)}- ${node.name}: ${stringify(node.valueBefore)}\n${createSpace(depth)}+ ${node.name}: ${stringify(node.valueAfter)}`;
+      case 'unchanged':
+        return `${createSpace(depth)}${selectSign(node.type)} ${node.name}: ${node.value}`;
+      default:
+        return `${createSpace(depth)}${selectSign(node.type)} ${node.name}: ${stringify(node.value, depth)}`;
     }
-    if (depth === 2) {
-      return `${repeat(10)}${selectSign(data.type)} ${data.name}: ${data.value}`;
-    }
-    if (data.type === 'changed') {
-      return `${repeat(6)}- ${data.name}: ${stringify(data.valueBefore)}\n${repeat(6)}+ ${data.name}: ${stringify(data.valueAfter)}`;
-    }
-    if (depth > 0) {
-      return `${repeat(6)}${selectSign(data.type)} ${data.name}: ${stringify(data.value, depth)}`;
-    }
-    if (depth === 0) {
-      return `${repeat(2)}${selectSign(data.type)} ${data.name}: ${stringify(data.value, depth)}`;
-    }
-    return `${repeat(10)}${selectSign(data.type)} ${data.name}: ${stringify(data.value, depth)}`;
   });
-  return `{\n${result.join('\n')}\n${createSpace(depth)}}`;
+  return `{\n${result.join('\n')}\n${createSpaceEnd(depth)}}`;
 };
 
 export default treeRender;

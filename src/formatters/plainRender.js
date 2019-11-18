@@ -1,25 +1,25 @@
 import _ from 'lodash/fp';
 
 const plainRender = (ast, acc = '') => {
-  const result = ast.map((data) => {
-    const getValue = _.isObject(data.value) ? '[complex value]' : data.value;
-    const getValueFromObject = _.isObject(data.valueAfter) || _.isObject(data.valueAfter) ? '[complex value]' : data.valueAfter;
-    if (data.type === 'changeInside') {
-      return plainRender(data.children, `${acc}${data.name}.`);
+  const result = ast.map((node) => {
+    const getValue = _.isObject(node.value) ? '[complex value]' : node.value;
+    const getValueFromObject = _.isObject(node.valueAfter) || _.isObject(node.valueAfter) ? '[complex value]' : node.valueAfter;
+    if (node.type === 'changeInside') {
+      return plainRender(node.children, `${acc}${node.name}.`);
     }
-    if (data.type === 'added') {
-      return `Property '${acc}${data.name}' was added with value: ${getValue}`;
+    if (node.type === 'added') {
+      return `Property '${acc}${node.name}' was added with value: ${getValue}`;
     }
-    if (data.type === 'changed') {
-      if (_.isObject(data.valueBefore) || _.isObject(data.valueAfter)) {
-        return `Property '${acc}${data.name}' was added with value: ${getValueFromObject}`;
+    if (node.type === 'changed') {
+      if (_.isObject(node.valueBefore) || _.isObject(node.valueAfter)) {
+        return `Property '${acc}${node.name}' was added with value: ${getValueFromObject}`;
       }
-      return `Property '${acc}${data.name}' was updated. From ${data.valueBefore} to ${data.valueAfter}`;
+      return `Property '${acc}${node.name}' was updated. From ${node.valueBefore} to ${node.valueAfter}`;
     }
-    if (data.type === 'deleted') {
-      return `Property '${acc}${data.name}' was removed`;
+    if (node.type === 'deleted') {
+      return `Property '${acc}${node.name}' was removed`;
     }
-    return `Property '${acc}${data.name}' not changed`;
+    return `Property '${acc}${node.name}' not changed`;
   });
   return result.join('\n');
 };
