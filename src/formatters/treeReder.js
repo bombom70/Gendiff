@@ -47,8 +47,8 @@ const treeRender = (ast, depth = 0) => {
       }
     } catch (e) {
       console.log('Error');
+      throw e;
     }
-    return node;
   });
   return `{\n${result.join('\n')}\n${createSpace(depth - 1)}}`;
 };

@@ -28,8 +28,8 @@ const plainRender = (ast, acc = '') => {
       }
     } catch (e) {
       console.log('Error');
+      throw e;
     }
-    return node;
   });
   return result.join('\n');
 };
