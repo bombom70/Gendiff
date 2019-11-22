@@ -20,9 +20,11 @@ const plainRender = (ast, acc = '') => {
         return `Property '${acc}${node.name}' was updated${strBuild(node.valueBefore, node.valueAfter)}`;
       case 'deleted':
         return `Property '${acc}${node.name}' was removed`;
-      default:
+      case 'unchanged':
         return `Property '${acc}${node.name}' not changed`;
+      default:
     }
+    return node;
   });
   return result.join('\n');
 };
