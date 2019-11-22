@@ -11,18 +11,23 @@ const strBuild = (valueBefore, valueAfter) => {
 
 const plainRender = (ast, acc = '') => {
   const result = ast.map((node) => {
-    switch (node.type) {
-      case 'changeInside':
-        return plainRender(node.children, `${acc}${node.name}.`);
-      case 'added':
-        return `Property '${acc}${node.name}' was added with value: ${getValue(node.value)}`;
-      case 'changed':
-        return `Property '${acc}${node.name}' was updated${strBuild(node.valueBefore, node.valueAfter)}`;
-      case 'deleted':
-        return `Property '${acc}${node.name}' was removed`;
-      case 'unchanged':
-        return `Property '${acc}${node.name}' not changed`;
-      default:
+    try {
+      switch (node.type) {
+        case 'changeInside':
+          return plainRender(node.children, `${acc}${node.name}.`);
+        case 'added':
+          return `Property '${acc}${node.name}' was added with value: ${getValue(node.value)}`;
+        case 'changed':
+          return `Property '${acc}${node.name}' was updated${strBuild(node.valueBefore, node.valueAfter)}`;
+        case 'deleted':
+          return `Property '${acc}${node.name}' was removed`;
+        case 'unchanged':
+          return `Property '${acc}${node.name}' not changed`;
+        default:
+          throw new Error();
+      }
+    } catch (e) {
+      console.log('Error');
     }
     return node;
   });

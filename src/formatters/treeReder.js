@@ -30,18 +30,23 @@ const selectSign = (type) => {
 
 const treeRender = (ast, depth = 0) => {
   const result = ast.map((node) => {
-    switch (node.type) {
-      case 'changeInside':
-        return `${createSpace(depth)}${selectSign(node.type)} ${node.name}: ${treeRender(node.children, depth + 2)}`;
-      case 'added':
-        return `${createSpace(depth)}${selectSign(node.type)} ${node.name}: ${stringify(node.value, depth)}`;
-      case 'changed':
-        return `${createSpace(depth)}- ${node.name}: ${stringify(node.valueBefore, depth)}\n${createSpace(depth)}+ ${node.name}: ${stringify(node.valueAfter, depth)}`;
-      case 'unchanged':
-        return `${createSpace(depth)}${selectSign(node.type)} ${node.name}: ${stringify(node.value, depth)}`;
-      case 'deleted':
-        return `${createSpace(depth)}${selectSign(node.type)} ${node.name}: ${stringify(node.value, depth)}`;
-      default:
+    try {
+      switch (node.type) {
+        case 'changeInside':
+          return `${createSpace(depth)}${selectSign(node.type)} ${node.name}: ${treeRender(node.children, depth + 2)}`;
+        case 'added':
+          return `${createSpace(depth)}${selectSign(node.type)} ${node.name}: ${stringify(node.value, depth)}`;
+        case 'changed':
+          return `${createSpace(depth)}- ${node.name}: ${stringify(node.valueBefore, depth)}\n${createSpace(depth)}+ ${node.name}: ${stringify(node.valueAfter, depth)}`;
+        case 'unchanged':
+          return `${createSpace(depth)}${selectSign(node.type)} ${node.name}: ${stringify(node.value, depth)}`;
+        case 'deleted':
+          return `${createSpace(depth)}${selectSign(node.type)} ${node.name}: ${stringify(node.value, depth)}`;
+        default:
+          throw new Error();
+      }
+    } catch (e) {
+      console.log('Error');
     }
     return node;
   });
