@@ -9,26 +9,21 @@ const strBuild = (valueBefore, valueAfter) => {
   return `. From ${getValue(valueBefore)} to ${getValue(valueAfter)}`;
 };
 
-const plainRender = (ast, acc = '') => {
+const plainRender = (ast, ancestry = '') => {
   const result = ast.map((node) => {
-    try {
-      switch (node.type) {
-        case 'changeInside':
-          return plainRender(node.children, `${acc}${node.name}.`);
-        case 'added':
-          return `Property '${acc}${node.name}' was added with value: ${getValue(node.value)}`;
-        case 'changed':
-          return `Property '${acc}${node.name}' was updated${strBuild(node.valueBefore, node.valueAfter)}`;
-        case 'deleted':
-          return `Property '${acc}${node.name}' was removed`;
-        case 'unchanged':
-          return `Property '${acc}${node.name}' not changed`;
-        default:
-          throw new Error();
-      }
-    } catch (e) {
-      console.log('Error');
-      throw e;
+    switch (node.type) {
+      case 'changeInside':
+        return plainRender(node.children, `${ancestry}${node.name}.`);
+      case 'added':
+        return `Property '${ancestry}${node.name}' was added with value: ${getValue(node.value)}`;
+      case 'changed':
+        return `Property '${ancestry}${node.name}' was updated${strBuild(node.valueBefore, node.valueAfter)}`;
+      case 'deleted':
+        return `Property '${ancestry}${node.name}' was removed`;
+      case 'unchanged':
+        return `Property '${ancestry}${node.name}' not changed`;
+      default:
+        throw new Error('property is not corrected');
     }
   });
   return result.join('\n');

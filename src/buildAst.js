@@ -1,6 +1,6 @@
 import _ from 'lodash/fp';
 
-const render = (valueBefore, valueAfter) => {
+const buildAst = (valueBefore, valueAfter) => {
   const valueKeys = _.union(Object.keys(valueBefore), Object.keys(valueAfter));
   valueKeys.sort();
   const result = valueKeys.map((key) => {
@@ -8,7 +8,7 @@ const render = (valueBefore, valueAfter) => {
       return {
         name: key,
         type: 'changeInside',
-        children: render(valueBefore[key], valueAfter[key]),
+        children: buildAst(valueBefore[key], valueAfter[key]),
       };
     }
     if (!_.has(key, valueBefore)) {
@@ -42,4 +42,4 @@ const render = (valueBefore, valueAfter) => {
   return result;
 };
 
-export default render;
+export default buildAst;
