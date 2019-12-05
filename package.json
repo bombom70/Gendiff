@@ -1,6 +1,6 @@
 {
   "name": "my-calculated-differences",
-  "version": "1.0.9",
+  "version": "2.0.0",
   "description": "to calculate differences",
   "main": "dist/index.js",
   "scripts": {
