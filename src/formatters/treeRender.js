@@ -14,11 +14,14 @@ const createSpace = (depth) => {
   return iter(depth, '');
 };
 
-const stringify = (value, depth) => JSON.stringify(value)
-  .replace(/"/g, '')
-  .replace(/{/g, `{\n${createSpace(depth + 1)}`)
-  .replace(/:/g, ': ')
-  .replace(/}/g, `\n${createSpace(depth - 1)}}`);
+const stringify = (value, depth) => {
+  const str = JSON.stringify(value).replace(/"/g, '').replace(/{/g, '').replace(/}/g, '')
+    .replace(/:/g, ': ');
+  if (value instanceof Object) {
+    return `{\n${createSpace(depth + 1)}${str}\n${createSpace(depth - 1)}}`;
+  }
+  return value;
+};
 
 const selectSign = (type) => {
   const signs = {
