@@ -15,7 +15,8 @@ npm i my-calculated-differences
 
 
 ```
-run
+run:
+    gendiff -<format> <pathToFile1> <pathToFile2>
 ```
 
 [![asciicast](https://asciinema.org/a/KEZggSvoMFTPr9Mo2YFiQxmRB.svg)](https://asciinema.org/a/KEZggSvoMFTPr9Mo2YFiQxmRB)
