@@ -18,19 +18,18 @@ const stringify = (value, depth) => {
   const str = JSON.stringify(value);
   if (_.isObject(value)) {
     return str.split('').map((element) => {
-      if (element === '{') {
-        return `{\n${createSpace(depth + 1)}`;
+      switch (element) {
+        case '{':
+          return `{\n${createSpace(depth + 1)}`;
+        case '}':
+          return `\n${createSpace(depth - 1)}}`;
+        case ':':
+          return ': ';
+        case '"':
+          return '';
+        default:
+          return element;
       }
-      if (element === '}') {
-        return `\n${createSpace(depth - 1)}}`;
-      }
-      if (element === ':') {
-        return ': ';
-      }
-      if (element === '"') {
-        return '';
-      }
-      return element;
     }).join('');
   }
   return value;
