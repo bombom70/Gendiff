@@ -15,10 +15,23 @@ const createSpace = (depth) => {
 };
 
 const stringify = (value, depth) => {
-  const str = JSON.stringify(value).replace(/"/g, '').replace(/{/g, '').replace(/}/g, '')
-    .replace(/:/g, ': ');
+  const str = JSON.stringify(value);
   if (_.isObject(value)) {
-    return `{\n${createSpace(depth + 1)}${str}\n${createSpace(depth - 1)}}`;
+    return str.split('').map((element) => {
+      if (element === '{') {
+        return `{\n${createSpace(depth + 1)}`;
+      }
+      if (element === '}') {
+        return `\n${createSpace(depth - 1)}}`;
+      }
+      if (element === ':') {
+        return ': ';
+      }
+      if (element === '"') {
+        return '';
+      }
+      return element;
+    }).join('');
   }
   return value;
 };
