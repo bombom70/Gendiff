@@ -8,8 +8,9 @@
 
 ## Project setup
 
-###install:
+
 ```
+### install:
     npm i my-calculated-differences
 ```
 
