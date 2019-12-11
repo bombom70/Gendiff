@@ -6,7 +6,15 @@
 
 [![Build Status](https://travis-ci.com/bombom70/project-lvl2-s487.svg?branch=master)](https://travis-ci.com/bombom70/project-lvl2-s487)
 
-## Project setup
+## Описание:
+```
+В рамках данного проекта необходимо реализовать утилиту для поиска отличий в конфигурационных файлах.
+
+Возможности утилиты:
+
+    - Поддержка разных форматов
+    - Генерация отчета в виде plain text, pretty и json
+```
 
 ### install:
 ```
