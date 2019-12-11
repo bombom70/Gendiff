@@ -8,7 +8,8 @@
 
 ## Project setup
 ```
-npm i my-calculated-differences
+###install:
+    npm i my-calculated-differences
 ```
 
 [![asciicast](https://asciinema.org/a/OhILJ2PX2O7NbKp6Yf0HizFFi.svg)](https://asciinema.org/a/OhILJ2PX2O7NbKp6Yf0HizFFi)
