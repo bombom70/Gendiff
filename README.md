@@ -23,19 +23,8 @@ run:
 
 
 ```
-diff yaml
-```
-
-[![asciicast](https://asciinema.org/a/86BOJLG4NnwlCdVKKLBdCgaoa.svg)](https://asciinema.org/a/86BOJLG4NnwlCdVKKLBdCgaoa)
-
-```
-diff ini
-```
-
-[![asciicast](https://asciinema.org/a/YGqWzJv86g0ICs5vNCUNqrrO5.svg)](https://asciinema.org/a/YGqWzJv86g0ICs5vNCUNqrrO5)
-
-```
-diff-tree
+run:
+    diff-tree
 ```
 
 [![asciicast](https://asciinema.org/a/fpBWpMoXNF3LhS4CRD1TfMxAi.svg)](https://asciinema.org/a/fpBWpMoXNF3LhS4CRD1TfMxAi)
