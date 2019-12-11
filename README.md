@@ -41,11 +41,13 @@ diff-tree
 [![asciicast](https://asciinema.org/a/fpBWpMoXNF3LhS4CRD1TfMxAi.svg)](https://asciinema.org/a/fpBWpMoXNF3LhS4CRD1TfMxAi)
 
 ```
-diff plain format
+run:
+    diff --format plain <pathToFile1> <pathToFile2>
 ```
 [![asciicast](https://asciinema.org/a/fGrHUQfcaGOtar5T3PvyeFyEp.svg)](https://asciinema.org/a/fGrHUQfcaGOtar5T3PvyeFyEp)
 
 ```
-diff json format
+run:
+    diff --format json <pathToFile1> <pathToFile2>
 ```
 [![asciicast](https://asciinema.org/a/MfBcaEfpo5YEFfQBviXyJ406W.svg)](https://asciinema.org/a/MfBcaEfpo5YEFfQBviXyJ406W)
