@@ -24,7 +24,7 @@ run:
 
 ```
 run:
-    diff-tree
+    gendiff <pathToFile1> <pathToFile2>
 ```
 
 [![asciicast](https://asciinema.org/a/fpBWpMoXNF3LhS4CRD1TfMxAi.svg)](https://asciinema.org/a/fpBWpMoXNF3LhS4CRD1TfMxAi)
