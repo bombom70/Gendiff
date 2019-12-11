@@ -7,6 +7,7 @@
 [![Build Status](https://travis-ci.com/bombom70/project-lvl2-s487.svg?branch=master)](https://travis-ci.com/bombom70/project-lvl2-s487)
 
 ## Описание:
+-asd
 ```
 В рамках данного проекта необходимо реализовать утилиту для поиска отличий в конфигурационных файлах.
 
